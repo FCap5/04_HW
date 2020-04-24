@@ -1,0 +1,13 @@
+#highscorePage {
+    float: left;
+    border: solid black 2px;
+    clear: both;
+   
+};
+
+.timerSpace{
+float: right;
+border: solid red 2px;
+
+
+};
