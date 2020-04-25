@@ -35,6 +35,19 @@ function setTime() {
     }, 1000);
 }
 
+function answerTimer() {
+    var timeInterval = setInterval(function runFunction() {
+        timeLeft = 2
+        timeLeft--;
+
+
+        if (timeLeft === 0) {
+            clearInterval(timeInterval);
+
+            console.log(timeLeft);
+        }
+    }, 1000);
+}
 
 //Press start to set timer and display first question and answers
 $("#start-button").on("click", function () {
@@ -47,18 +60,27 @@ $("#start-button").on("click", function () {
         $.each(answers.answerOne, function (answerOne, answer) {
             $(answer).text(answerOne);
             var answerBtn = $("<button>");
-            var i = 0;
             answerBtn.addClass("btn btn-outline-success btn-block");
-            answerBtn.addId("#i");
+            answerBtn.attr("id", i++)
             $(answerBtn).text(answer);
             $("#answerSpace").append(answerBtn);
 
-
             $(answerBtn).click(function (event) {
+                i = 0;
                 console.log(event);
-                if (answerOne.guid = 3) {
-                    alert("You got it right!");
-                    //askQuestionTwo();
+                const $this = $(this);
+                console.log(this);
+                if ($this.attr("id") == 1) {
+                    $("#answerResponse").text("Correct!");
+                    setTimeout(function () {
+                        askQuestionTwo();
+                    }, 1500)
+                    //
+                } else {
+                    $("#answerResponse").text("Wrong!");
+                    setTimeout(function () {
+                        askQuestionTwo();
+                    }, 1500)
                 }
             });
         });
@@ -66,19 +88,37 @@ $("#start-button").on("click", function () {
 
     //question 2
     function askQuestionTwo() {
-        i++;
         $("h3:first").text(questions.questionTwo);
         $("#answerSpace").text("");
+        $("#answerResponse").text("");
         $.each(answers.answerTwo, function (answerTwo, answer) {
+
             $(answer).text(answerTwo);
             var answerBtn = $("<button>");
             answerBtn.addClass("btn btn-outline-success btn-block");
+            answerBtn.attr("id", i++)
             $(answerBtn).text(answer);
             $("#answerSpace").append(answerBtn);
+
             $(answerBtn).click(function (event) {
-                askQuestionThree();
-            }
-            )
+                i = 0;
+                console.log(event);
+                const $this = $(this);
+                console.log(this);
+                if ($this.attr("id") == 2) {
+                    $("#answerResponse").text("Correct!");
+                    setTimeout(function () {
+                        askQuestionThree();
+                    }, 1500)
+                    //
+                } else {
+                    $("#answerResponse").text("Wrong!");
+                    setTimeout(function () {
+                        askQuestionThree();
+                    }, 1500)
+                }
+            });
+
         });
     };
 
@@ -86,17 +126,34 @@ $("#start-button").on("click", function () {
     function askQuestionThree() {
         $("h3:first").text(questions.questionThree);
         $("#answerSpace").text("");
+        $("#answerResponse").text("");
         $.each(answers.answerThree, function (answerThree, answer) {
             $(answer).text(answerThree);
             var answerBtn = $("<button>");
             answerBtn.addClass("btn btn-outline-success btn-block");
+            answerBtn.attr("id", i++)
             $(answerBtn).text(answer);
             $("#answerSpace").append(answerBtn);
-            $(answerBtn).click(function (event) {
 
-                askQuestionFour();
-            }
-            )
+            $(answerBtn).click(function (event) {
+                i = 0;
+                console.log(event);
+                const $this = $(this);
+                console.log(this);
+                if ($this.attr("id") == 3) {
+                    $("#answerResponse").text("Correct!");
+                    setTimeout(function () {
+                        askQuestionFour();
+                    }, 1500)
+                    //
+                } else {
+                    $("#answerResponse").text("Wrong!");
+                    setTimeout(function () {
+                        askQuestionFour();
+                    }, 1500)
+                }
+            });
+
         });
     };
 
@@ -104,16 +161,33 @@ $("#start-button").on("click", function () {
     function askQuestionFour() {
         $("h3:first").text(questions.questionFour);
         $("#answerSpace").text("");
+        $("#answerResponse").text("");
         $.each(answers.answerFour, function (answerFour, answer) {
             $(answer).text(answerFour);
             var answerBtn = $("<button>");
             answerBtn.addClass("btn btn-outline-success btn-block");
+            answerBtn.attr("id", i++)
             $(answerBtn).text(answer);
             $("#answerSpace").append(answerBtn);
+
             $(answerBtn).click(function (event) {
-                askQuestionFive();
-            }
-            )
+                i = 0;
+                console.log(event);
+                const $this = $(this);
+                console.log(this);
+                if ($this.attr("id") == 0) {
+                    $("#answerResponse").text("Correct!");
+                    setTimeout(function () {
+                        askQuestionFive();
+                    }, 1500)
+                    //
+                } else {
+                    $("#answerResponse").text("Wrong!");
+                    setTimeout(function () {
+                        askQuestionFive();
+                    }, 1500)
+                }
+            });
         });
     }
 
@@ -121,12 +195,33 @@ $("#start-button").on("click", function () {
     function askQuestionFive() {
         $("h3:first").text(questions.questionFive);
         $("#answerSpace").text("");
+        $("#answerResponse").text("");
         $.each(answers.answerFive, function (answerFive, answer) {
             $(answer).text(answerFive);
             var answerBtn = $("<button>");
             answerBtn.addClass("btn btn-outline-success btn-block");
+            answerBtn.attr("id", i++)
             $(answerBtn).text(answer);
             $("#answerSpace").append(answerBtn);
+
+            $(answerBtn).click(function (event) {
+                i = 0;
+                console.log(event);
+                const $this = $(this);
+                console.log(this);
+                if ($this.attr("id") == 1) {
+                    $("#answerResponse").text("Correct!");
+                    setTimeout(function () {
+                        //askQuestionFive();
+                    }, 1500)
+                    //
+                } else {
+                    $("#answerResponse").text("Wrong!");
+                    setTimeout(function () {
+                        //askQuestionFive();
+                    }, 1500)
+                }
+            });
 
         });
     };
