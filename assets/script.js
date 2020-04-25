@@ -2,7 +2,7 @@
 var timer = document.querySelector("#timer");
 var secondsLeft = 100;
 
-var i = 1;
+var i = 0;
 
 //questions object
 var questions = {
@@ -39,27 +39,33 @@ function setTime() {
 //Press start to set timer and display first question and answers
 $("#start-button").on("click", function () {
     setTime();
-    $("h3:first").text(questions.questionOne);
-    $("p:first").text("");
-    $.each(answers.answerOne, function (answerOne, answer) {
-        $(answer).text(answerOne);
-        var answerBtn = $("<button>");
-        answerBtn.addClass("btn btn-outline-success btn-block");
-        $(answerBtn).text(answer);
-        $("#answerSpace").append(answerBtn);
-
-    });
-
-
-    //clear old button to create new next question button    
     $("#start-button").remove();
-    var nextQuestionBtn = $("<button>");
-    $(nextQuestionBtn).text("Next Question!");
-    $("#buttonSpace").append(nextQuestionBtn);
+    askQuestions();
+    function askQuestions() {
+        $("h3:first").text(questions.questionOne);
+        $("p:first").text("");
+        $.each(answers.answerOne, function (answerOne, answer) {
+            $(answer).text(answerOne);
+            var answerBtn = $("<button>");
+            var i = 0;
+            answerBtn.addClass("btn btn-outline-success btn-block");
+            answerBtn.addId("#i");
+            $(answerBtn).text(answer);
+            $("#answerSpace").append(answerBtn);
 
-    //click event for next question
-    //cues question and answer for question 2
-    $(nextQuestionBtn).on("click", function () {
+
+            $(answerBtn).click(function (event) {
+                console.log(event);
+                if (answerOne.guid = 3) {
+                    alert("You got it right!");
+                    //askQuestionTwo();
+                }
+            });
+        });
+    }
+
+    //question 2
+    function askQuestionTwo() {
         i++;
         $("h3:first").text(questions.questionTwo);
         $("#answerSpace").text("");
@@ -69,55 +75,64 @@ $("#start-button").on("click", function () {
             answerBtn.addClass("btn btn-outline-success btn-block");
             $(answerBtn).text(answer);
             $("#answerSpace").append(answerBtn);
+            $(answerBtn).click(function (event) {
+                askQuestionThree();
+            }
+            )
+        });
+    };
+
+    //question 3
+    function askQuestionThree() {
+        $("h3:first").text(questions.questionThree);
+        $("#answerSpace").text("");
+        $.each(answers.answerThree, function (answerThree, answer) {
+            $(answer).text(answerThree);
+            var answerBtn = $("<button>");
+            answerBtn.addClass("btn btn-outline-success btn-block");
+            $(answerBtn).text(answer);
+            $("#answerSpace").append(answerBtn);
+            $(answerBtn).click(function (event) {
+
+                askQuestionFour();
+            }
+            )
+        });
+    };
+
+    //question 4
+    function askQuestionFour() {
+        $("h3:first").text(questions.questionFour);
+        $("#answerSpace").text("");
+        $.each(answers.answerFour, function (answerFour, answer) {
+            $(answer).text(answerFour);
+            var answerBtn = $("<button>");
+            answerBtn.addClass("btn btn-outline-success btn-block");
+            $(answerBtn).text(answer);
+            $("#answerSpace").append(answerBtn);
+            $(answerBtn).click(function (event) {
+                askQuestionFive();
+            }
+            )
+        });
+    }
+
+    //Question 5
+    function askQuestionFive() {
+        $("h3:first").text(questions.questionFive);
+        $("#answerSpace").text("");
+        $.each(answers.answerFive, function (answerFive, answer) {
+            $(answer).text(answerFive);
+            var answerBtn = $("<button>");
+            answerBtn.addClass("btn btn-outline-success btn-block");
+            $(answerBtn).text(answer);
+            $("#answerSpace").append(answerBtn);
 
         });
-
-        //question 3
-        $(nextQuestionBtn).on("click", function () {
-            $("h3:first").text(questions.questionThree);
-            $("#answerSpace").text("");
-            $.each(answers.answerThree, function (answerThree, answer) {
-                $(answer).text(answerThree);
-                var answerBtn = $("<button>");
-                answerBtn.addClass("btn btn-outline-success btn-block");
-                $(answerBtn).text(answer);
-                $("#answerSpace").append(answerBtn);
-
-            });
-
-            //question 4
-            $(nextQuestionBtn).on("click", function () {
-                $("h3:first").text(questions.questionFour);
-                $("#answerSpace").text("");
-                $.each(answers.answerFour, function (answerFour, answer) {
-                    $(answer).text(answerFour);
-                    var answerBtn = $("<button>");
-                    answerBtn.addClass("btn btn-outline-success btn-block");
-                    $(answerBtn).text(answer);
-                    $("#answerSpace").append(answerBtn);
-
-                });
-
-                //Question 5
-                $(nextQuestionBtn).on("click", function () {
-                    $("h3:first").text(questions.questionFive);
-                    $("#answerSpace").text("");
-                    $.each(answers.answerFive, function (answerFive, answer) {
-                        $(answer).text(answerFive);
-                        var answerBtn = $("<button>");
-                        answerBtn.addClass("btn btn-outline-success btn-block");
-                        $(answerBtn).text(answer);
-                        $("#answerSpace").append(answerBtn);
-
-                    });
-                });
-            });
-        });
-
-
-    });
-
+    };
 });
+
+
 //$("#start-button").on("click", function () {
 //    $("h3:first").text(questions.questionTwo);
 //    $("p:first").text("");
