@@ -3,6 +3,9 @@ var timer = document.querySelector("#timer");
 var secondsLeft = 100;
 
 var i = 0;
+var score = 0;
+var playerName = "";
+
 
 //questions object
 var questions = {
@@ -30,27 +33,28 @@ function setTime() {
 
         if (secondsLeft === 0) {
             clearInterval(timeInterval);
+            function gameOver() {
+                $("h3:first").text("All Done!");
+                $("#answerSpace").text("");
+                $("#answerResponse").text("");
+                var yourScore = $("<p>");
+            }
             gameOver();
-        }
-    }, 1000);
-}
-
-function answerTimer() {
-    var timeInterval = setInterval(function runFunction() {
-        timeLeft = 2
-        timeLeft--;
-
-
-        if (timeLeft === 0) {
+        } else if (secondsLeft < 0) {
             clearInterval(timeInterval);
+            timer.textContent = "";
+            secondsLeft = "";
 
-            console.log(timeLeft);
-        }
+        };
     }, 1000);
 }
+
+localStorage.setItem("score", "0");
 
 //Press start to set timer and display first question and answers
 $("#start-button").on("click", function () {
+    localStorage.removeItem("score");
+    localStorage.removeItem("player name");
     setTime();
     $("#start-button").remove();
     askQuestions();
@@ -72,15 +76,17 @@ $("#start-button").on("click", function () {
                 console.log(this);
                 if ($this.attr("id") == 1) {
                     $("#answerResponse").text("Correct!");
+                    score = score + 5;
+                    localStorage.setItem("score", score);
                     setTimeout(function () {
                         askQuestionTwo();
-                    }, 1500)
+                    }, 1000)
                     //
                 } else {
                     $("#answerResponse").text("Wrong!");
                     setTimeout(function () {
                         askQuestionTwo();
-                    }, 1500)
+                    }, 1000)
                 }
             });
         });
@@ -106,16 +112,18 @@ $("#start-button").on("click", function () {
                 const $this = $(this);
                 console.log(this);
                 if ($this.attr("id") == 2) {
+                    score = score + 5;
+                    localStorage.setItem("score", score);
                     $("#answerResponse").text("Correct!");
                     setTimeout(function () {
                         askQuestionThree();
-                    }, 1500)
+                    }, 1000)
                     //
                 } else {
                     $("#answerResponse").text("Wrong!");
                     setTimeout(function () {
                         askQuestionThree();
-                    }, 1500)
+                    }, 1000)
                 }
             });
 
@@ -141,16 +149,18 @@ $("#start-button").on("click", function () {
                 const $this = $(this);
                 console.log(this);
                 if ($this.attr("id") == 3) {
+                    score = score + 5;
+                    localStorage.setItem("score", score);
                     $("#answerResponse").text("Correct!");
                     setTimeout(function () {
                         askQuestionFour();
-                    }, 1500)
+                    }, 1000)
                     //
                 } else {
                     $("#answerResponse").text("Wrong!");
                     setTimeout(function () {
                         askQuestionFour();
-                    }, 1500)
+                    }, 1000)
                 }
             });
 
@@ -176,16 +186,18 @@ $("#start-button").on("click", function () {
                 const $this = $(this);
                 console.log(this);
                 if ($this.attr("id") == 0) {
+                    score = score + 5;
+                    localStorage.setItem("score", score);
                     $("#answerResponse").text("Correct!");
                     setTimeout(function () {
                         askQuestionFive();
-                    }, 1500)
+                    }, 1000)
                     //
                 } else {
                     $("#answerResponse").text("Wrong!");
                     setTimeout(function () {
                         askQuestionFive();
-                    }, 1500)
+                    }, 1000)
                 }
             });
         });
@@ -210,21 +222,62 @@ $("#start-button").on("click", function () {
                 const $this = $(this);
                 console.log(this);
                 if ($this.attr("id") == 1) {
+                    score = score + 5;
+                    localStorage.setItem("score", score);
                     $("#answerResponse").text("Correct!");
                     setTimeout(function () {
-                        //askQuestionFive();
-                    }, 1500)
+                        submitScore();
+                    }, 1000)
                     //
                 } else {
                     $("#answerResponse").text("Wrong!");
                     setTimeout(function () {
-                        //askQuestionFive();
-                    }, 1500)
+                        submitScore();
+                    }, 1000)
                 }
             });
 
         });
     };
+    //Final page submit
+    function submitScore() {
+        secondsLeft = -1;
+        $("h3:first").text("All Done!");
+        $("#answerSpace").text("");
+        $("#answerResponse").text("");
+        var finalScore = localStorage.getItem("score");
+        var yourScore = $("<p>");
+        $(yourScore).attr("id", "yourScore");
+        $(yourScore).text("Your score is " + finalScore + "!");
+        var enterName = $("<input>");
+        $(enterName).attr({
+            class: "form-control",
+            type: "text",
+            placeholder: "Enter Name Here"
+        });
+        var submitButtonParent = $("<button>");
+        var submitButton = $("<a>");
+        $(submitButtonParent).append(submitButton);
+        $(submitButton).attr({
+            class: "btn btn-primary",
+            id: "submitButton",
+            href: "highscore.html"
+        });
+        $(submitButton).text("Submit")
+        $("#answerSpace").append(yourScore, enterName, submitButton);
+        $("#submitButton").click(function () {
+            playerName = $(enterName).val();
+            localStorage.setItem("player name", playerName);
+            console.log(playerName);
+            localStorage.setItem("High Score", playerName + " - " + score);
+
+        });
+
+
+
+
+    }
+
 });
 
 
