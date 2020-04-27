@@ -77,6 +77,7 @@ function submitScore() {
 }
 
 //Press start to set timer and display first question and answers
+//Question 1
 $("#start-button").on("click", function () {
     score = 0;
     setTime();
@@ -93,16 +94,18 @@ $("#start-button").on("click", function () {
             $(answerBtn).text(answer);
             $("#answerSpace").append(answerBtn);
 
+            //Functions for when an answer button is clicked
             $(answerBtn).click(function (event) {
                 i = 0;
                 const $this = $(this);
+                //if the right button is clicked
                 if ($this.attr("id") == 1) {
                     $("#answerResponse").text("Correct!");
                     score = score + 5;
                     setTimeout(function () {
                         askQuestionTwo();
                     }, 1000)
-                    //
+                    //if the wrong button is clicked
                 } else {
                     $("#answerResponse").text("Wrong! -3 Seconds!");
                     secondsLeft = secondsLeft - 3;
@@ -172,7 +175,6 @@ $("#start-button").on("click", function () {
                     setTimeout(function () {
                         askQuestionFour();
                     }, 1000)
-                    //
                 } else {
                     $("#answerResponse").text("Wrong! -3 Seconds!");
                     secondsLeft = secondsLeft - 3;
@@ -207,7 +209,6 @@ $("#start-button").on("click", function () {
                     setTimeout(function () {
                         askQuestionFive();
                     }, 1000)
-                    //
                 } else {
                     $("#answerResponse").text("Wrong! -3 Seconds!");
                     secondsLeft = secondsLeft - 3;
@@ -241,7 +242,6 @@ $("#start-button").on("click", function () {
                     setTimeout(function () {
                         submitScore();
                     }, 1000)
-                    //
                 } else {
                     $("#answerResponse").text("Wrong! -3 Seconds!");
                     secondsLeft = secondsLeft - 3;
@@ -253,16 +253,16 @@ $("#start-button").on("click", function () {
 
         });
     };
-    //Final page submit
-
 });
 
+//Getting the scoreboard to work
 for (w = 0; w < localStorage.length; w++) {
     var scoreboardItem = $("<li>");
     $(scoreboardItem).text(localStorage.getItem(localStorage.key(w)));
     $("#scoreBoard").append(scoreboardItem);
 }
 
+//clear button on the scoreboard
 $("#clearHighScores").click(function () {
     localStorage.clear();
     $("#scoreBoard").text("");
