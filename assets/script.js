@@ -71,7 +71,7 @@ function submitScore() {
     $("#submitButton").click(function () {
         let scoreIndex = 1 + localStorage.length;
         index = (scoreIndex)
-        results = (scoreIndex + ". " + $(enterName).val() + " - " + score);
+        results = ($(enterName).val() + " - " + score);
         localStorage.setItem(index, results);
     });
 }
