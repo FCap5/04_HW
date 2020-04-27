@@ -1,17 +1,17 @@
+body{
+    background-color: d9ae68;
+}
+
+
 #highscorePage {
-    width: 400px;
+    padding: 50px;
+    padding-left: 200px;
+    width: 50%;
     position: relative;
     float: left;
-    border: solid black 2px;
-    clear: both;
+    font-size: x-large;
+    
    
 };
 
-#timer{
-width: 40px;
-float: right;
-position: relative;
-border: solid red 2px;
-
-
-};
+   

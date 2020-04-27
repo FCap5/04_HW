@@ -7,23 +7,25 @@
     <title>Pasta Quiz!</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
 </head>
 
 
 <body>
     <!--Header, full width -->
     <div class="row">
-        <div id="header" class="col-sm-12">
-            <div id="highscorePage">High Score!</div>
-            <div class="timerSpace"><span id="timer">Timer!</span></div>
-        </div>
+        <container id="header" class="col-sm-12">
+            <div>
+                <a href="highscore.html" id="highscorePage">High Score!</a>
+            </div>
+            <div id="timer">Timer! </div>
+        </container>
     </div>
     <div class="row">
         <div id="spacer" class="col-sm-3"></div>
         <div id="quizbox" class="col-sm-6">
             <div id="questionSpace">
-                <h3>Name That Pasta!</h1>
+                <h3>Name That Pasta!</h3>
             </div>
             <div id="answerSpace">
                 <p>Do you love pasta? Of course you do! If you don't, we can't be friends! Everyone loves a good
@@ -35,7 +37,7 @@
                 </p>
             </div>
             <div id="buttonSpace">
-                <button id="start-button" class="btn btn-primary">start!</button>
+                <button id="start-button" class="btn btn-primary btn-lg">Start!</button>
             </div>
             <div id="answerResponse"></div>
         </div>
@@ -45,18 +47,19 @@
     <!-- div float left, timer id: for link to javascript-->
     <!-- text box for maninupulation-->
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
-        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <script src="assets/script.js"></script>
-</body>
+    <body onload="myFunction()">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+            integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+        <script src="assets/script.js"></script>
+    </body>
 
 </html>

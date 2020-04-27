@@ -6,7 +6,6 @@ var i = 0;
 var score = 0;
 
 
-
 //questions object
 var questions = {
     questionOne: "Question 1: Commonly served up with delicious meatballs, this long, thin noodle with no ridges twirls beautifully around a fork for a delectable bite.",
@@ -45,6 +44,7 @@ function setTime() {
 // function to submit score
 // this page will appear after all five questions are answered, or after the clock runs out
 function submitScore() {
+    removeLine();
     secondsLeft = -1;
     $("h3:first").text("All Done!");
     $("#answerSpace").text("");
@@ -75,6 +75,16 @@ function submitScore() {
         localStorage.setItem(index, results);
     });
 }
+//line appears above answer score when button is clicked
+function addLine() {
+    var addLine = $("<hr>");
+    $("#buttonSpace").append(addLine);
+
+}
+//removes line before for next questio
+function removeLine() {
+    $("#buttonSpace").text("");
+}
 
 //Press start to set timer and display first question and answers
 //Question 1
@@ -99,6 +109,7 @@ $("#start-button").on("click", function () {
                 i = 0;
                 const $this = $(this);
                 //if the right button is clicked
+                addLine();
                 if ($this.attr("id") == 1) {
                     $("#answerResponse").text("Correct!");
                     score = score + 5;
@@ -119,6 +130,7 @@ $("#start-button").on("click", function () {
 
     //question 2
     function askQuestionTwo() {
+        removeLine();
         $("h3:first").text(questions.questionTwo);
         $("#answerSpace").text("");
         $("#answerResponse").text("");
@@ -134,6 +146,7 @@ $("#start-button").on("click", function () {
             $(answerBtn).click(function (event) {
                 i = 0;
                 const $this = $(this);
+                addLine();
                 if ($this.attr("id") == 2) {
                     score = score + 5;
                     $("#answerResponse").text("Correct!");
@@ -155,6 +168,7 @@ $("#start-button").on("click", function () {
 
     //question 3
     function askQuestionThree() {
+        removeLine();
         $("h3:first").text(questions.questionThree);
         $("#answerSpace").text("");
         $("#answerResponse").text("");
@@ -169,6 +183,7 @@ $("#start-button").on("click", function () {
             $(answerBtn).click(function (event) {
                 i = 0;
                 const $this = $(this);
+                addLine();
                 if ($this.attr("id") == 3) {
                     score = score + 5;
                     $("#answerResponse").text("Correct!");
@@ -189,6 +204,7 @@ $("#start-button").on("click", function () {
 
     //question 4
     function askQuestionFour() {
+        removeLine();
         $("h3:first").text(questions.questionFour);
         $("#answerSpace").text("");
         $("#answerResponse").text("");
@@ -203,6 +219,7 @@ $("#start-button").on("click", function () {
             $(answerBtn).click(function (event) {
                 i = 0;
                 const $this = $(this);
+                addLine();
                 if ($this.attr("id") == 0) {
                     score = score + 5;
                     $("#answerResponse").text("Correct!");
@@ -222,6 +239,7 @@ $("#start-button").on("click", function () {
 
     //Question 5
     function askQuestionFive() {
+        removeLine();
         $("h3:first").text(questions.questionFive);
         $("#answerSpace").text("");
         $("#answerResponse").text("");
@@ -236,6 +254,7 @@ $("#start-button").on("click", function () {
             $(answerBtn).click(function (event) {
                 i = 0;
                 const $this = $(this);
+                addLine();
                 if ($this.attr("id") == 1) {
                     score = score + 5;
                     $("#answerResponse").text("Correct!");
@@ -253,6 +272,7 @@ $("#start-button").on("click", function () {
 
         });
     };
+
 });
 
 //Getting the scoreboard to work
@@ -268,6 +288,33 @@ $("#clearHighScores").click(function () {
     $("#scoreBoard").text("");
     scoreIndex = 0;
 
+})
+
+
+//couldn't get styling to work in stylesheet
+$("#timer").css({
+    "fontSize": "140%",
+    "paddingTop": "50px",
+    "paddingLeft": "750px",
+    "fontWeight": "100000"
+
+})
+
+$("#submitButton").css({
+    "paddingTop": "20px"
+})
+
+$("#highScores").css({
+    "paddingTop": "60px",
+    "paddingBotton": "80px"
+})
+
+$("#scoreBoard").css({
+    "paddingTop": "20px"
+})
+
+$("#buttonSpace").css({
+    "paddingTop": "20px"
 })
 
 

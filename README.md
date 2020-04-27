@@ -25,7 +25,7 @@ While I am pretty proud of the code I wrote, I also think that I could have tigh
 Like any good game of Pinball, trivia is all about the final score. I knew going into this that local storage was my weakspot, and it proved to be a royal pain in the a**. My big problem was that I was storing the score in the local storage and then trying to create a seperate storage item that had the playername and score. I was succesful in this, but then I realized that it was going to be nearly impossible to get just the information that I wanted from local storage. So, I had to strip it down. I ended up storing the score in a variable and then creating a local storage item in the score submit page. I had to create a loop to assign a key value so that I could then call it for the scoreboard. That one sucked and took me like, 3 hours. 
 
 ## Finishing on furstrating 
-With the scoreboard finished, I could no longer put off the CSS. It's by far my least favorite part. But, it needed to be done. So I did it. 
+With the scoreboard finished, I could no longer put off the CSS. It's by far my least favorite part. But, it needed to be done. So I gave it a shot. . . and most of it didn't work. I realized that since I created most of my text in javascript, I needed to do my formatting in javascript. It sucked. 
 
 ## Takeaways 
 I think that doing some thorough pseudo-coding really helped me conceptulize what I needed for this project and ultimately helped me to move through the coding at a pretty good pace. I think that the one area where I can definitely afford to think further ahead is with my functions. I need to think about what I can code as a function so that I can condense my code and make it cleaner.
