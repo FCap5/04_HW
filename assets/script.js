@@ -1,6 +1,6 @@
 //variables for timer
 var timer = document.querySelector("#timer");
-var secondsLeft = 100;
+var secondsLeft = 45;
 
 var i = 0;
 var score = 0;
@@ -33,13 +33,7 @@ function setTime() {
 
         if (secondsLeft === 0) {
             clearInterval(timeInterval);
-            function gameOver() {
-                $("h3:first").text("All Done!");
-                $("#answerSpace").text("");
-                $("#answerResponse").text("");
-                var yourScore = $("<p>");
-            }
-            gameOver();
+            submitScore();
         } else if (secondsLeft < 0) {
             clearInterval(timeInterval);
             timer.textContent = "";
@@ -48,7 +42,39 @@ function setTime() {
         };
     }, 1000);
 }
-
+// function to submit score
+// this page will appear after all five questions are answered, or after the clock runs out
+function submitScore() {
+    secondsLeft = -1;
+    $("h3:first").text("All Done!");
+    $("#answerSpace").text("");
+    $("#answerResponse").text("");
+    var yourScore = $("<p>");
+    $(yourScore).attr("id", "yourScore");
+    $(yourScore).text("Your score is " + score + "!");
+    var enterName = $("<input>");
+    $(enterName).attr({
+        class: "form-control",
+        type: "text",
+        placeholder: "Enter Name Here"
+    });
+    var submitButtonParent = $("<button>");
+    var submitButton = $("<a>");
+    $(submitButtonParent).append(submitButton);
+    $(submitButton).attr({
+        class: "btn btn-primary",
+        id: "submitButton",
+        href: "highscore.html"
+    });
+    $(submitButton).text("Submit")
+    $("#answerSpace").append(yourScore, enterName, submitButton);
+    $("#submitButton").click(function () {
+        let scoreIndex = 1 + localStorage.length;
+        index = (scoreIndex)
+        results = (scoreIndex + ". " + $(enterName).val() + " - " + score);
+        localStorage.setItem(index, results);
+    });
+}
 
 //Press start to set timer and display first question and answers
 $("#start-button").on("click", function () {
@@ -78,7 +104,8 @@ $("#start-button").on("click", function () {
                     }, 1000)
                     //
                 } else {
-                    $("#answerResponse").text("Wrong!");
+                    $("#answerResponse").text("Wrong! -3 Seconds!");
+                    secondsLeft = secondsLeft - 3;
                     setTimeout(function () {
                         askQuestionTwo();
                     }, 1000)
@@ -112,7 +139,8 @@ $("#start-button").on("click", function () {
                     }, 1000)
                     //
                 } else {
-                    $("#answerResponse").text("Wrong!");
+                    $("#answerResponse").text("Wrong! -3 Seconds!");
+                    secondsLeft = secondsLeft - 3;
                     setTimeout(function () {
                         askQuestionThree();
                     }, 1000)
@@ -146,7 +174,8 @@ $("#start-button").on("click", function () {
                     }, 1000)
                     //
                 } else {
-                    $("#answerResponse").text("Wrong!");
+                    $("#answerResponse").text("Wrong! -3 Seconds!");
+                    secondsLeft = secondsLeft - 3;
                     setTimeout(function () {
                         askQuestionFour();
                     }, 1000)
@@ -180,7 +209,8 @@ $("#start-button").on("click", function () {
                     }, 1000)
                     //
                 } else {
-                    $("#answerResponse").text("Wrong!");
+                    $("#answerResponse").text("Wrong! -3 Seconds!");
+                    secondsLeft = secondsLeft - 3;
                     setTimeout(function () {
                         askQuestionFive();
                     }, 1000)
@@ -213,7 +243,8 @@ $("#start-button").on("click", function () {
                     }, 1000)
                     //
                 } else {
-                    $("#answerResponse").text("Wrong!");
+                    $("#answerResponse").text("Wrong! -3 Seconds!");
+                    secondsLeft = secondsLeft - 3;
                     setTimeout(function () {
                         submitScore();
                     }, 1000)
@@ -223,46 +254,15 @@ $("#start-button").on("click", function () {
         });
     };
     //Final page submit
-    function submitScore() {
-        secondsLeft = -1;
-        $("h3:first").text("All Done!");
-        $("#answerSpace").text("");
-        $("#answerResponse").text("");
-        var yourScore = $("<p>");
-        $(yourScore).attr("id", "yourScore");
-        $(yourScore).text("Your score is " + score + "!");
-        var enterName = $("<input>");
-        $(enterName).attr({
-            class: "form-control",
-            type: "text",
-            placeholder: "Enter Name Here"
-        });
-        var submitButtonParent = $("<button>");
-        var submitButton = $("<a>");
-        $(submitButtonParent).append(submitButton);
-        $(submitButton).attr({
-            class: "btn btn-primary",
-            id: "submitButton",
-            href: "highscore.html"
-        });
-        $(submitButton).text("Submit")
-        $("#answerSpace").append(yourScore, enterName, submitButton);
-        $("#submitButton").click(function () {
-            let scoreIndex = 1 + localStorage.length;
-            playerName = (scoreIndex + ". " + $(enterName).val());
-            localStorage.key(scoreIndex + playerName);
-            localStorage.setItem(playerName, score);
-        });
-    }
+
 });
-var scoreboardEntry = $("<div>");
-var localStorageHighScore = localStorage.getItem("high-score");
-$(scoreboardEntry).text(localStorageHighScore);
-$("#scoreBoard").append(scoreboardEntry);
 
-//for (x = 0, x < localStorage.length; x++) {
+for (w = 0; w < localStorage.length; w++) {
+    var scoreboardItem = $("<li>");
+    $(scoreboardItem).text(localStorage.getItem(localStorage.key(w)));
+    $("#scoreBoard").append(scoreboardItem);
+}
 
-//}
 $("#clearHighScores").click(function () {
     localStorage.clear();
     $("#scoreBoard").text("");

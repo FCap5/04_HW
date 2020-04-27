@@ -1,12 +1,16 @@
 #highscorePage {
+    width: 400px;
+    position: relative;
     float: left;
     border: solid black 2px;
     clear: both;
    
 };
 
-.timerSpace{
+#timer{
+width: 40px;
 float: right;
+position: relative;
 border: solid red 2px;
 
 
