@@ -4,7 +4,7 @@ var secondsLeft = 100;
 
 var i = 0;
 var score = 0;
-var playerName = "";
+
 
 
 //questions object
@@ -49,12 +49,10 @@ function setTime() {
     }, 1000);
 }
 
-localStorage.setItem("score", "0");
 
 //Press start to set timer and display first question and answers
 $("#start-button").on("click", function () {
-    localStorage.removeItem("score");
-    localStorage.removeItem("player name");
+    score = 0;
     setTime();
     $("#start-button").remove();
     askQuestions();
@@ -71,13 +69,10 @@ $("#start-button").on("click", function () {
 
             $(answerBtn).click(function (event) {
                 i = 0;
-                console.log(event);
                 const $this = $(this);
-                console.log(this);
                 if ($this.attr("id") == 1) {
                     $("#answerResponse").text("Correct!");
                     score = score + 5;
-                    localStorage.setItem("score", score);
                     setTimeout(function () {
                         askQuestionTwo();
                     }, 1000)
@@ -108,12 +103,9 @@ $("#start-button").on("click", function () {
 
             $(answerBtn).click(function (event) {
                 i = 0;
-                console.log(event);
                 const $this = $(this);
-                console.log(this);
                 if ($this.attr("id") == 2) {
                     score = score + 5;
-                    localStorage.setItem("score", score);
                     $("#answerResponse").text("Correct!");
                     setTimeout(function () {
                         askQuestionThree();
@@ -145,12 +137,9 @@ $("#start-button").on("click", function () {
 
             $(answerBtn).click(function (event) {
                 i = 0;
-                console.log(event);
                 const $this = $(this);
-                console.log(this);
                 if ($this.attr("id") == 3) {
                     score = score + 5;
-                    localStorage.setItem("score", score);
                     $("#answerResponse").text("Correct!");
                     setTimeout(function () {
                         askQuestionFour();
@@ -182,12 +171,9 @@ $("#start-button").on("click", function () {
 
             $(answerBtn).click(function (event) {
                 i = 0;
-                console.log(event);
                 const $this = $(this);
-                console.log(this);
                 if ($this.attr("id") == 0) {
                     score = score + 5;
-                    localStorage.setItem("score", score);
                     $("#answerResponse").text("Correct!");
                     setTimeout(function () {
                         askQuestionFive();
@@ -218,12 +204,9 @@ $("#start-button").on("click", function () {
 
             $(answerBtn).click(function (event) {
                 i = 0;
-                console.log(event);
                 const $this = $(this);
-                console.log(this);
                 if ($this.attr("id") == 1) {
                     score = score + 5;
-                    localStorage.setItem("score", score);
                     $("#answerResponse").text("Correct!");
                     setTimeout(function () {
                         submitScore();
@@ -245,10 +228,9 @@ $("#start-button").on("click", function () {
         $("h3:first").text("All Done!");
         $("#answerSpace").text("");
         $("#answerResponse").text("");
-        var finalScore = localStorage.getItem("score");
         var yourScore = $("<p>");
         $(yourScore).attr("id", "yourScore");
-        $(yourScore).text("Your score is " + finalScore + "!");
+        $(yourScore).text("Your score is " + score + "!");
         var enterName = $("<input>");
         $(enterName).attr({
             class: "form-control",
@@ -266,68 +248,26 @@ $("#start-button").on("click", function () {
         $(submitButton).text("Submit")
         $("#answerSpace").append(yourScore, enterName, submitButton);
         $("#submitButton").click(function () {
-            playerName = $(enterName).val();
-            localStorage.setItem("player name", playerName);
-            console.log(playerName);
-            localStorage.setItem("High Score", playerName + " - " + score);
-
+            let scoreIndex = 1 + localStorage.length;
+            playerName = (scoreIndex + ". " + $(enterName).val());
+            localStorage.key(scoreIndex + playerName);
+            localStorage.setItem(playerName, score);
         });
-
-
-
-
     }
-
 });
+var scoreboardEntry = $("<div>");
+var localStorageHighScore = localStorage.getItem("high-score");
+$(scoreboardEntry).text(localStorageHighScore);
+$("#scoreBoard").append(scoreboardEntry);
+
+//for (x = 0, x < localStorage.length; x++) {
+
+//}
+$("#clearHighScores").click(function () {
+    localStorage.clear();
+    $("#scoreBoard").text("");
+    scoreIndex = 0;
+
+})
 
 
-//$("#start-button").on("click", function () {
-//    $("h3:first").text(questions.questionTwo);
-//    $("p:first").text("");
-//    $("p:first").text(answerTwo.forEach(function (answer) {
-//        $(answerTwo).text(answer);
-//        var answerBtn = $("<button>");
-//        $(answerBtn).text(answer);
-//        $("#answerSpace").append(answerBtn);
-
- //   })
-  //  );
-//need to have questions at the ready to sub in
-// 4 buttons
-// need to know which is correct, and which is not
-// need to know index of question
-
-//what is the functionality
-// pull question and answer options from objects containing questions and answers
-// loop through to assign for answers
-// use .this from fridge exercise to determine what is clicked
-// if the right answer is selected, display correct, time out two seconds, add points to internal storage, then go to next page
-// if wrong, display wrong, time out two seconds and then go to next question
-
-
-
-// 1. h2 for questions
-// 2. multiple choice answers, 4 buttons
-// 3. if return === true --> proceed to next page/qustion
-// 4. add to score total
-// 5. if false, subtract time and guess again (prevent event)
-
-// repeat for a total of 5 questions
-
-// once all questions have been answered:
-// display score and field for submitting name
-// submit button
-// bring to scoreboard page
-
-
-// if time expires, stop script
-// display above screen to submit score
-// send to scoreboard
-
-
-// scoreboard 
-// draw score from local 
-// draw name from local storage
-// align so that highest score is on top in an ordered list
-// button to clear 
-// button to start over
